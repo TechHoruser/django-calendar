@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  vars:
+    mongodb_components: [ "mongod" ]
+  become: true # sudo
+  tasks:
+          - name: Instalando vim
+            apt:
+                    name: vim
+                    state: present
+          - name: Instalando git
+            apt:
+                    name: git
+                    state: present
+          - import_tasks: ./mongodb.yml
