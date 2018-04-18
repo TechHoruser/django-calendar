@@ -1,0 +1,7 @@
+*\.cfg
+*\.swp
+*\.retry
+
+vm/\.vagrant/
+
+ansible/private_key
