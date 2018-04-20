@@ -9,8 +9,16 @@
             apt:
                     name: vim
                     state: present
+
           - name: Instalando git
             apt:
                     name: git
                     state: present
+
           - import_tasks: ./mongodb.yml
+
+          - shell: "python3 --version"
+            register: python_version
+          - debug:
+                    msg: "La verión de python es {{ python_version.stdout }}"
+
