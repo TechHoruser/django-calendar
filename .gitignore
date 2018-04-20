@@ -5,3 +5,7 @@
 vm/\.vagrant/
 
 ansible/private_key
+
+*\.idea/
+
+*\.DS_Store
