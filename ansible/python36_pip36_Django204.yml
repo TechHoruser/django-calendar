@@ -1,0 +1,77 @@
+# tasks file for python36
+#          - name: A
+#            apt_key: 
+#                    keyserver: keyserver.ubuntu.com 
+#                    id: 36A1D7869245C8950F966E92D8576A8BA88D21E9
+
+#          - name: B
+#            apt_repository:
+#                    repo: deb-src http://deb.debian.org/debian jessie main restricted
+#                    state: present
+          - name: B
+            apt_repository:
+                    repo: deb-src http://ftp.de.debian.org/debian testing main
+                    state: present
+
+# XXX
+          - name: C
+            apt:
+                    name: apt-utils
+                    state: present
+
+# - apt:
+#     name: python3-minimal
+#     state: present
+
+# # XXX
+# - file:
+#     path: /usr/share/python3/debpython/__pycache__
+#     state: absent
+
+# - name: ???
+#   apt:
+#     name: python3.5
+#     state: build-dep
+#     # update_cache: yes
+
+# https://github.com/ansible/ansible-container/issues/551#issuecomment-311536992
+          - name: D
+            shell: env -i PATH=$PATH bash -c "apt-get build-dep -y python3.6"
+
+          - file:
+              path: /home/src
+              state: directory
+
+# # https://github.com/ansible/ansible/issues/23642
+          - get_url:
+              url: https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
+              dest: /home/src/
+
+#          - command: curl -k https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz -o /home/src/Python-3.6.5.tgz
+
+          - unarchive:
+              src: /home/src/Python-3.6.5.tgz
+              dest: /home/src/
+              remote_src: yes
+
+          - shell: ./configure && make && make altinstall
+            args:
+              chdir: /home/src/Python-3.6.5
+#              register: out
+
+#          - debug: var=out.stdout_lines
+
+# - pip:
+#     name: "{{ item }}"
+#     executable: pip3.6
+#   with_items:
+#     # - virtualenvwrapper
+#     - jupyter
+
+# XXX
+          - shell: env -i PATH=$PATH bash -c "pip3.6 install jupyter virtualenvwrapper"
+
+          - pip:
+              executable: pip3.6
+              name: Django
+              version: 2.0.4

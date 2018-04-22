@@ -17,6 +17,8 @@
 
           - import_tasks: ./mongodb.yml
 
+          - import_tasks: ./python36_pip36_Django204.yml
+
           - shell: "python3 --version"
             register: python_version
           - debug:
