@@ -51,3 +51,15 @@
               executable: pip3.6
               name: Django
               version: 2.0.4
+
+          - name: Install pymongo 3.6.1
+            pip:
+              executable: pip3.6
+              name: pymongo
+              version: 3.6.1
+           
+          - name: Install jsonschema
+            pip:
+              executable: pip3.6
+              name: jsonschema
+
