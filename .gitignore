@@ -1,6 +1,7 @@
 *\.cfg
 *\.swp
 *\.retry
+*\.pyc
 
 vm/\.vagrant/
 
