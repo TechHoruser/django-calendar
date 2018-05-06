@@ -2,6 +2,7 @@
 *\.swp
 *\.retry
 *\.pyc
+*\.log
 
 vm/\.vagrant/
 
